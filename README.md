@@ -81,9 +81,11 @@ module "public_ip" {
 
 | Name | Description |
 |------|-------------|
-| <a name="output_id"></a> [id](#output\_id) | ID of the resource |
-| <a name="output_name"></a> [name](#output\_name) | Name of the resource |
-| <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | Name of the resource resource group |
+| <a name="output_fqdn"></a> [fqdn](#output\_fqdn) | Fully qualified domain name of the A DNS record associated with the public IP |
+| <a name="output_id"></a> [id](#output\_id) | ID of the Azure Public IP |
+| <a name="output_ip_address"></a> [ip\_address](#output\_ip\_address) | The IP address value that was allocated |
+| <a name="output_name"></a> [name](#output\_name) | Name of the Azure Public IP |
+| <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | Name of the Azure Public IP resource group |
 
 ## Providers
 
