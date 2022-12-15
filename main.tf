@@ -4,7 +4,6 @@ data "azurerm_resource_group" "this" {
   name = var.resource_group_name
 }
 
-#This is a sample resource
 resource "azurerm_public_ip" "this" {
   count = module.this.enabled ? 1 : 0
 
@@ -12,7 +11,14 @@ resource "azurerm_public_ip" "this" {
   location            = local.location
   resource_group_name = local.resource_group_name
 
-  allocation_method = "Dynamic"
+  allocation_method = var.allocation_method
+  zones             = var.zones
+  ip_version        = var.ip_version
+
+  sku      = var.sku
+  sku_tier = var.sku_tier
+
+  tags = module.this.tags
 }
 
 module "diagnostic_settings" {
