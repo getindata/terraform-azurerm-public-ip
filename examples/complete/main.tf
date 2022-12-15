@@ -14,12 +14,19 @@ resource "azurerm_log_analytics_workspace" "this" {
   sku                 = "PerGB2018"
 }
 
-module "terraform_module_template" {
+module "public_ip" {
   source  = "../../"
   context = module.this.context
 
   location            = module.resource_group.location
   resource_group_name = module.resource_group.name
+
+  allocation_method = "Static"
+  zones             = ["1", "2", "3"]
+  ip_version        = "IPv4"
+
+  sku      = "Standard"
+  sku_tier = "Regional"
 
   diagnostic_settings = {
     enabled = true

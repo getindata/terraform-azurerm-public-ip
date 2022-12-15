@@ -1,4 +1,4 @@
-output "terraform_module_template" {
-  description = "Output of the template module"
-  value       = module.terraform_module_template
+output "public_ip" {
+  description = "Output of the public ip module"
+  value       = module.public_ip
 }

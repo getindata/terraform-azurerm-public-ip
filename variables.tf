@@ -21,5 +21,55 @@ variable "diagnostic_settings" {
     enabled               = optional(bool, false)
     logs_destinations_ids = optional(list(string), [])
   })
-  default = {}
+  default  = {}
+  nullable = false
+}
+
+variable "allocation_method" {
+  description = "Defines the allocation method for this IP address. Possible values are Static or Dynamic"
+  type        = string
+
+  validation {
+    condition     = contains(["Static", "Dynamic"], var.allocation_method)
+    error_message = "Possible values are Static or Dynamic for the allocation_method variable"
+  }
+}
+
+variable "zones" {
+  description = "A collection containing the availability zone to allocate the Public IP in"
+  type        = list(string)
+  default     = null
+}
+
+variable "ip_version" {
+  description = "The IP Version to use, IPv6 or IPv4"
+  type        = string
+  default     = null
+
+  validation {
+    condition     = contains(["IPv4", "IPv6", "[null]"], coalesce(var.ip_version, "[null]"))
+    error_message = "Possible values are IPv6 or IPv6 for the ip_version variable"
+  }
+}
+
+variable "sku" {
+  description = "The SKU of the Public IP. Accepted values are Basic and Standard. Defaults to Basic. Public IP Standard SKUs require allocation_method to be set to Static"
+  type        = string
+  default     = null
+
+  validation {
+    condition     = contains(["Basic", "Standard", "[null]"], coalesce(var.sku, "[null]"))
+    error_message = "Possible values are Basic or Standard for the sku variable"
+  }
+}
+
+variable "sku_tier" {
+  description = "The SKU Tier that should be used for the Public IP. Possible values are Regional and Global. Defaults to Regional. When sku_tier is set to Global, sku must be set to Standard"
+  type        = string
+  default     = null
+
+  validation {
+    condition     = contains(["Regional", "Global", "[null]"], coalesce(var.sku_tier, "[null]"))
+    error_message = "Possible values are Regional or Global for the sku_tier variable"
+  }
 }
