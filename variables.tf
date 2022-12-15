@@ -21,7 +21,8 @@ variable "diagnostic_settings" {
     enabled               = optional(bool, false)
     logs_destinations_ids = optional(list(string), [])
   })
-  default = {}
+  default  = {}
+  nullable = false
 }
 
 variable "allocation_method" {
