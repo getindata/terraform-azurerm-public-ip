@@ -43,10 +43,10 @@ variable "zones" {
 variable "ip_version" {
   description = "The IP Version to use, IPv6 or IPv4"
   type        = string
-  default     = "IPv4"
+  default     = null
 
   validation {
-    condition     = contains(["IPv4", "IPv6"], var.ip_version)
+    condition     = contains(["IPv4", "IPv6", "[null]"], coalesce(var.ip_version, "[null]"))
     error_message = "Possible values are IPv6 or IPv6 for the ip_version variable"
   }
 }
@@ -54,10 +54,10 @@ variable "ip_version" {
 variable "sku" {
   description = "The SKU of the Public IP. Accepted values are Basic and Standard. Defaults to Basic. Public IP Standard SKUs require allocation_method to be set to Static"
   type        = string
-  default     = "Basic"
+  default     = null
 
   validation {
-    condition     = contains(["Basic", "Standard"], var.sku)
+    condition     = contains(["Basic", "Standard", "[null]"], coalesce(var.sku, "[null]"))
     error_message = "Possible values are Basic or Standard for the sku variable"
   }
 }
@@ -65,10 +65,10 @@ variable "sku" {
 variable "sku_tier" {
   description = "The SKU Tier that should be used for the Public IP. Possible values are Regional and Global. Defaults to Regional. When sku_tier is set to Global, sku must be set to Standard"
   type        = string
-  default     = "Regional"
+  default     = null
 
   validation {
-    condition     = contains(["Regional", "Global"], var.sku_tier)
+    condition     = contains(["Regional", "Global", "[null]"], coalesce(var.sku_tier, "[null]"))
     error_message = "Possible values are Regional or Global for the sku_tier variable"
   }
 }
