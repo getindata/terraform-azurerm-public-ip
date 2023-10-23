@@ -1,5 +1,5 @@
 module "resource_group" {
-  source = "github.com/getindata/terraform-azurerm-resource-group?ref=v1.2.0"
+  source = "github.com/getindata/terraform-azurerm-resource-group?ref=v1.2.1"
 
   name     = var.resource_group_name
   location = var.location
